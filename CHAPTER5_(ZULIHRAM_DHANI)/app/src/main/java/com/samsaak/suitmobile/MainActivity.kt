@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
-import com.samsaak.suitmobile.landingPage.LandingPageActivity
+import com.samsaak.suitmobile.landingPage.LandingPageActivity //package name selalu gunakan huruf kecil
 import com.samsaak.suitmobile.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.dialog_result.view.*
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private val optionsChoice = arrayOf("Batu", "Gunting", "Kertas")
 
     // Get parcelable data
-    private val data by lazy {
+    private val data by lazy { // +1 penggunaan lazy untuk menghemat memory
         intent.getParcelableExtra<Foe>("data")
     }
 
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // +1 penggunaan binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onImageClicked(value: String, key: String) {
+        // untuk ini, mungkin lebih baik kalau nilai "Batu" "Gunting" "Kertas" di simpan di dalam variable, untuk menghindari typo
         if (data?.foe == "CPU") {
             val randomCom = optionsChoice.random()
             playerOneChoice = value
@@ -250,7 +252,7 @@ class MainActivity : AppCompatActivity() {
             resetButton()
             startActivity(
                 Intent(this@MainActivity, LandingPageActivity::class.java)
-                    .putExtra("name", "dhani")
+                    .putExtra("name", "dhani") // namanya jangan di hardcode
             )
         }
         dialog.show()
